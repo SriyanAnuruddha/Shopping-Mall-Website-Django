@@ -1,0 +1,144 @@
+{% extends "bakery_site/base.html" %}
+{% block content %}
+{% load static %}
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const calculateTotalPrice = () => {
+        const priceElements = document.querySelectorAll('.price');
+        const quantityElements = document.querySelectorAll('input[name="quantity[]"]');
+        const shippingSelect = document.querySelector('.select');
+        let totalPrice = 0;
+  
+        priceElements.forEach((element, index) => {
+          const price = parseFloat(element.innerText.replace('Rs.', ''));
+          const quantity = parseInt(quantityElements[index].value);
+          totalPrice += price * quantity;
+        });
+  
+        const shippingFee = parseFloat(shippingSelect.value);
+        totalPrice += shippingFee;
+  
+        const totalPriceElements = document.querySelectorAll('.total-price');
+        totalPriceElements.forEach(element => {
+          element.innerText = `Rs. ${totalPrice.toFixed(2)}`;
+        });
+  
+        // Set the value of the hidden input field to the total price
+        document.getElementById('total_price_submit').value = totalPrice.toFixed(2);
+      };
+  
+      const quantityInputs = document.querySelectorAll('input[name="quantity[]"]');
+      const shippingSelect = document.querySelector('.select');
+      quantityInputs.forEach((input, index) => {
+        input.addEventListener('input', calculateTotalPrice);
+        input.id = `form${index + 1}`; // Set a unique ID for each quantity input field
+      });
+      shippingSelect.addEventListener('change', calculateTotalPrice);
+  
+      calculateTotalPrice();
+    });
+</script>
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<section class="h-100 h-custom" style="background-color: #CC7722;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <h6 class="mb-0 text-muted">{{ cart.products.all|length }} items</h6>
+                    </div>
+                    
+                    <form action="{% url 'confirm_order_bakery' %}" method="post">
+                    {% csrf_token %}
+                    {% for product in cart.products.all %}
+                    <hr class="my-4">
+  
+                    <div class=" row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img
+                          src="{{ product.image.url }}"
+                          class="img-fluid rounded-3" alt="Cotton T-shirt">
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <h6 class="text-black mb-0">{{ product.name }}</h6>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                       
+  
+                        <input id="form1" min="0" name="quantity[]" value="1" type="number"
+                          class="form-control form-control-sm" />
+                        
+                        <input type="text" name="product_id[]" value="{{ product.id }}" hidden>
+                        
+                        
+
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="price mb-0">Rs.{{ product.price }}</h6>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a href="{% url 'delete_product_cart_bakery' product_id=product.id %}"><i class="fas fa-times"></i></a>
+                      </div>
+                    </div>
+                    {% empty %}
+                        <h1>Your cart is empty.</h1>
+                     {% endfor %}
+
+                    <input id="total_price_submit" type="text" name="total_price" value="0" hidden>
+
+                    <hr class="my-4">
+  
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a href="#!" class="text-body"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i><a href="{% url 'bakery-home' %}">Back to shop</a></a></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">items {{ cart.products.all|length }}</h5>
+                      <h5 class="total-price">Rs 0.00</h5>
+                    </div>
+  
+                    <h5 class="text-uppercase mb-3">Shipping</h5>
+  
+                    <div class="mb-4 pb-2">
+                      <select class="select">
+                        <option value="200">Standard-Delivery- 200.00</option>
+                        <option value="500">Fast-Delivery- 500.00</option>
+                      </select>
+                    </div>
+  
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5 class="total-price">Rs 0.00</h5>
+                    </div>
+  
+                    <button type="submit" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Confrim Order</button>
+  
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
+

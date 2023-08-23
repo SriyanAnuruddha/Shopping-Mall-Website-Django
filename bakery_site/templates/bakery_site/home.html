@@ -1,0 +1,84 @@
+{% extends "bakery_site/base.html" %}
+{% block content %}
+{% load static %}
+<div class="container mt-4">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+                <img src="{% get_media_prefix %}bakery_images/banner1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="{% get_media_prefix %}bakery_images/banner2.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- description -->
+<div id="about-us" class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% get_media_prefix %}bakery_images/desc.jpg" class="img-fluid"
+                alt="Image Description">
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+            <h4 class="text-light text-center">Wickland Bakery</h4>
+            
+            <p class="text-light">Your health is our top priority. We are a trusted pharmacy
+                dedicated to providing you with exceptional service, expert advice,
+                and affordable medication. Our knowledgeable staff is committed to
+                helping you stay healthy and happy. Visit us today and experience
+                the difference.               
+            </p>
+            <p class=" text-light lead">we are located in 4th floor</p>
+        </div>
+    </div>
+</div>
+
+<section id="products" class="mt-5 p-5">
+    <div class="container">
+        <h1 class="text-center text-white pt-3 pb-4">Our Products</h1>
+
+        <div class="row g-4">
+            <!-- grid sytem have 12 colums in total -->
+            <!-- if we wants to split in two equal colums we needs to use 12/2=6 -->
+            {% for product in products %}
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="" style="height: 100%;">
+                    <div class="card-body">
+                        <h5 class="cart-title mb-3">
+                            {{ product.name }}
+                        </h5>
+                        <p class="card-text lead">
+                            Rs. {{ product.price }}
+                        </p>
+                        {% if user.is_authenticated %}
+                            <form action="{% url 'add_to_cart_bakery' product.id %}" method="get">
+                                <button type="submit" class="btn bi bi-cart3 h2"  style="background-color: #6E260E; color: aliceblue;"></button>
+                            </form>
+                        {% else %}
+                            <p class="text-danger">Please <a href="{% url 'user-login' %}">log in</a> to add to cart.</p>
+                        {% endif %}                      
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<footer class="bg-dark mt-5">
+    <div class="container p-5 text-center">
+        <p class="text-light">COPYRIGHT © 2023 Wickland  (PRIVATE) LIMITED. ALL RIGHTS RESERVED.</p>
+    </div>
+</footer>
+{% endblock content %}

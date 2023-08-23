@@ -1,0 +1,168 @@
+{% extends "main_site/base.html" %}
+{% block content %}
+{% load static %}
+<!-- image slider -->
+<div class="container mt-4">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+                <img src="https://images01.nicepagecdn.com/page/33/39/website-template-preview-3339259.jpg"
+                    class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/food-offer-banner-design-template-ef081783b8a58d80662aae948311ef45_screen.jpg?ts=1615117868"
+                    class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="https://img.freepik.com/free-vector/modern-black-friday-sale-banner-background-with-realistic-paper-rip-style-template_1361-3684.jpg"
+                    class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+<div id="about-us" class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/9f/2c/01/ganjlik-mall.jpg?w=1200&h=1200&s=1"
+                class="img-fluid" alt="Image Description">
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+            <h2>Shop the World in One Place: Five Floors of International and Local Brands</h2>
+            <p>Welcome to our shopping mall located in the heart of Colombo, Sri Lanka. Our mall
+                features 5 stories of shopping, dining, and entertainment. With a wide range of local and international
+                brands, our retail shops offer something for everyone. From fashion and beauty to electronics and home
+                goods,
+                you're sure to find what you're looking for. Our mall is a one-stop-shop for all your shopping needs.
+                Come and experience the best shopping and entertainment Colombo has to offer.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- shops -->
+<section id="shops" class="mt-5 p-5 bg-secondary">
+    <div class="container">
+        <h1 class="text-left text-white pt-3 pb-4">SHOPS</h1>
+        <div class="row g-4">
+            <!-- grid sytem have 12 colums in total -->
+            <!-- if we wants to split in two equal colums we needs to use 12/2=6 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light h-100">
+                    <div class="card-body">
+                        <img class="img-fluid mb-3" src="{% get_media_prefix %}pharmacy_images/description_image.jpg"
+                            alt="">
+                        <h3 class="cart-title mb-3">
+                            Pharmacy
+                        </h3>
+                        <p class="card-text">
+                            Our pharmacy located in the heart of the mall provides personalized care and expert advice
+                            to help you manage your health. We offer a comprehensive range of prescription and
+                            over-the-counter medications, medical supplies, and health products to meet your needs.
+                        </p>
+                        <a href="{% url 'pharmacy-home' %}" class="btn btn-primary text-white px-5">visit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light h-100">
+                    <div class="card-body">
+                        <img class="img-fluid mb-3" src="{% get_media_prefix %}mobile_shop_images/mobileshop.jpg"
+                            alt="">
+                        <h3 class="cart-title mb-3">
+                            Mobile Retail & Repair Shop
+                        </h3>
+                        <p class="card-text">
+                            Our mobile retail and repair shop brings convenience to your doorstep. We offer fast and
+                            reliable repair services for your devices, as well as a selection of accessories and gadgets
+                            to enhance your mobile experience.
+                        </p>
+                        <a href="{% url 'mobile-shop-home' %}" class="btn btn-primary text-white px-5">visit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light h-100">
+                    <div class="card-body ">
+                        <img class="img-fluid mb-3" src="{% get_media_prefix %}bakery_images/bakery.jpg" alt="">
+                        <h3 class="cart-title mb-3">
+                            Bakery Shop
+                        </h3>
+                        <p class="card-text">
+                            Our mobile retail and repair shop brings convenience to your doorstep. We offer fast and reliable repair
+                            services for your devices, as well as a selection of accessories and gadgets to enhance your mobile experience.
+                        </p>
+                        <a href="{% url 'bakery-home' %}" class="btn btn-primary text-white px-5">visit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light h-100">
+                    <div class="card-body ">
+                        <img class="img-fluid mb-3" src="{% get_media_prefix %}clothing_shop_images/clothing.jpg"
+                            alt="">
+                        <h3 class="cart-title mb-3">
+                            Clothing Shop
+                        </h3>
+                        <p class="card-text">
+                            Step into our clothing shop and discover the latest fashion trends at affordable prices. From stylish everyday wear to elegant evening
+                            wear, we have something for every occasion. Shop now and express your unique style.
+                        </p>
+                        <a href="{% url 'clothing-shop-home' %}" class="btn btn-primary text-white px-5">visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="mt-5 p-5 container">
+    <h1 class="p-3">Leave us a review</h1>
+    <form class="mt-2 p-3" method="post" action="{% url 'postReview' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="review" class="form-label">Your review</label>
+          <input type="text" class="form-control" name="content">
+        </div>
+        <div class="mb-3">
+          <label for="rateus" class="form-label">Rate us</label>
+          <input type="number" min="1" max="5" name="rating" class="form-control" id="rateus">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <hr>
+    <h1 class="p-3">Customer Reviews</h1>
+    <div class="accordion" id="accordionExample">
+        {% for review in reviews %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ review.user }}" aria-expanded="true" aria-controls="{{ review.user }}">
+              <strong class="px-2">{{ review.user }}</strong>
+              
+              <i class="bi bi-star-fill"></i> <strong>{{ review.rating }}</strong>
+            </button>
+          </h2>
+          <div id="{{ review.user }}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              {{ review.content }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+         
+      </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,158 @@
+{% extends "mobile_shop_site/base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="container my-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to our mobile retail and repair shop!</h1>
+        <p class="lead">Broken screen? Battery issues? Don't worry, we've got you covered! Our expert technicians offer
+            fast and reliable repairs for all your mobile needs. Visit our store now and get your device back to life!
+        </p>
+        <hr class="my-4">
+        <p>At our mobile retail and repair shop, we are dedicated
+            to providing exceptional service and expert advice to keep
+            you connected and productive. Your satisfaction is our top
+            priority, and our knowledgeable staff is committed to helping you find the
+            best mobile solutions for your needs. Whether you need a new phone or tablet, repairs, or accessories,
+            we are here to help. Visit us today and experience the convenience and expertise that sets us apart.</p>
+        <p class="lead">
+            <a class="btn btn-secondary btn-lg" href="{% url 'mobiles-page' %}" role="button">Shop Now!</a>
+        </p>
+    </div>
+</div>
+
+
+<div class="container mt-4">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="5000">
+                <img src="{% get_media_prefix %}mobile_shop_images/banner1.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Unleash the power of mobility with our premium selection of smartphones. Visit us today</h2>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="{% get_media_prefix %}mobile_shop_images/banner2.png" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Upgrade your mobile experience with the latest technology and unbeatable prices. Step into our
+                        store now!</h2>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- Cost Calculator -->
+
+
+<div id="cost-calc" class="container mt-5">
+    <h1 class="text-center py-3 ">Cost Calculator</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% get_media_prefix %}mobile_shop_images/defualt _mobile.png" class="img-fluid"
+                alt="Image Description">
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+            <div class="px-3">
+                <div class="form-check">
+                    <input class="form-check-input h4" type="checkbox" value="" id="price1_chk">
+                    <label class="form-check-label h4" for="defaultCheck1">
+                        Replace battery: Rs.<span id="price1" >{{ Replace_battery }}</span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input h4" type="checkbox" value="" id="price2_chk">
+                    <label class="form-check-label h4" for="defaultCheck1">
+                        Screen repair: Rs.<span id="price2">{{ Screen_repair }}</span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input h4" type="checkbox" value="" id="price3_chk">
+                    <label class="form-check-label h4" for="defaultCheck1">
+                        Water damage repair: Rs.<span id="price3" >{{ Water_damage_repair }}</span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input h4" type="checkbox" value="" id="price4_chk">
+                    <label class="form-check-label h4" for="defaultCheck1">
+                        Software repair: Rs.<span id="price4">{{ Software_repair }}</span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input h4" type="checkbox" value="" id="price5_chk">
+                    <label class="form-check-label h4" for="defaultCheck1">
+                        Camera repair: Rs.<span id="price5">{{ Camera_repair }}</span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input h4" type="checkbox" value="" id="price6_chk">
+                    <label class="form-check-label h4" for="defaultCheck1">
+                        Speaker repair: Rs.<span id="price6">{{ Speaker_repair }}</span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input h4" type="checkbox" value="" id="price7_chk">
+                    <label class="form-check-label h4" for="defaultCheck1">
+                        Back cover replacement: Rs.<span id="price7">{{ Back_cover_replacement }}</span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input h4" type="checkbox" value="" id="price8_chk">
+                    <label class="form-check-label h4" for="defaultCheck1">
+                        Screen protector replacement: Rs.<span id="price8">{{ Screen_protector_replacement }}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="form-group py-3 ">
+                    <input type="text" class="form-control-lg mx-2 my-2" id="totalCost" placeholder="Total" readonly>
+                    <button id="calcPrice" class="btn btn-secondary btn-lg mb-2">Calculate Cost</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("calcPrice").addEventListener("click", function(){
+        let total = 0;
+        if (document.getElementById("price1_chk").checked) {
+            total +=Number( document.getElementById("price1").innerText);
+        }
+        if (document.getElementById("price2_chk").checked) {
+            total +=Number( document.getElementById("price2").innerText);
+        }
+        if (document.getElementById("price3_chk").checked) {
+            total +=Number( document.getElementById("price3").innerText);
+        }
+        if (document.getElementById("price4_chk").checked) {
+            total +=Number( document.getElementById("price4").innerText);
+        }
+        if (document.getElementById("price5_chk").checked) {
+            total +=Number( document.getElementById("price5").innerText);
+        }
+        if (document.getElementById("price6_chk").checked) {
+            total +=Number( document.getElementById("price6").innerText);
+        }
+        if (document.getElementById("price7_chk").checked) {
+            total +=Number( document.getElementById("price7").innerText);
+        }
+        if (document.getElementById("price8_chk").checked) {
+            total +=Number( document.getElementById("price8").innerText);
+        }
+
+        document.getElementById("totalCost").value = total
+    })
+
+
+</script>
+
+{% endblock content %}

@@ -6,7 +6,7 @@ This website was created as a platform for a shopping mall. Within this website,
 ### Available Functionalities ###
 - CRUD functionality manage to products in each sub-website
 - a special function for each website as follows
-- - Pharmacy
+  - Pharmacy
 - add to cart
 - user management
 - user login

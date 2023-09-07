@@ -1,4 +1,4 @@
-# Shopping_Mall_Website
+# Shopping-Mall_Website-django
 
 This website was created as a platform for a shopping mall. Within this website, there are sub-websites created for individual retail shops within the shopping mall. The shopping mall website includes the following sub-websites: a pharmacy website, a mobile repair and retail shop website, a bakery website, and a clothing shop website. Each of these sub-websites offers special features and provides full CRUD (Create, Read, Update, Delete) functionality, along with options for adding items to a shopping cart. Additionally, the main shopping mall website includes user registration and login functionality.
 

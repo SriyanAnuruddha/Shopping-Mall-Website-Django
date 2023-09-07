@@ -5,29 +5,32 @@ This website was created as a platform for a shopping mall. Within this website,
 ***
 ### Available Functionalities ###
 - CRUD functionality manage to products in each sub-website
-- a special function for each website as follows
-  - Pharmacy
+- special functions of sub-websites as follows
+  - Pharmacy : Users can upload a medical prescription's image to identify medicines and add them to the cart.
+  - Mobile Repari & Retail Shop: repair cost calculator.
 - add to cart
 - user management
 - user login
 - user registration
 
 ### Tech Stack ###
-- HTML
-- CSS
-- JS
-- AJAX
-- JQUERY
-- node.js
+- Python
+- Django Framework
 - Bootstrap
+- Java Script
+- CSS
+- HTML
+
 
 ### How to run locally ###
-1. you need to have node.js installed
-2. next you need to open 'back end' folder 
-3. run this command to startup the server side.
+1. you need to have python installed
+2. next you need install packages in requirments.txt and tesseract-ocr 
+3. next run this command to start the server.
 ```ruby
-node app.js
+python manage.py runserver
 ```
-4. next open 'front end' folder
-5. open 'home.html' with your favorite browser
-6. enjoy! 🥳🎉
+4. next open browser and go to
+```url
+localhost:8000
+```
+5. enjoy! 🥳🎉
